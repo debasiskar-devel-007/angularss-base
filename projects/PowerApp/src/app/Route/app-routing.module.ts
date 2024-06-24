@@ -46,13 +46,13 @@ const appRoutes: Routes = [
     path: 'service/list',
     component: ListingServiceComponent,
     resolve: { serviceList: ResolveService },
-    data: { requestcondition: { source: 'services_view', condition: {} }, endpoint: 'datalist' }
+    data: { requestcondition: { source: 'service_view', condition: {} }, endpoint: 'datalist' }
   },
   {
     path: 'service/edit/:_id',
     component: AddeditServiceComponent,
     resolve: { serviceList: ResolveService },
-    data: { requestcondition: { source: 'services', condition: {} }, endpoint: 'datalist' }
+    data: { requestcondition: { source: 'service', condition: {} }, endpoint: 'datalist' }
   },
 
 
@@ -95,7 +95,7 @@ const appRoutes: Routes = [
   { path: 'newsletter/add-subscription-admin', component: AddEditGroupComponent },
   {
     path: 'newsletter/list-subscription',
-    component: ListingSubscriptionComponent,
+    component: ListingSubscriptionComponent,  
     resolve: { subscriptionData: ResolveService },
     data: { requestcondition: { source: 'subscriptions_view', condition: {} }, endpoint: 'datalist' }
   },

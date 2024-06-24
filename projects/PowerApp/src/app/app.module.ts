@@ -22,7 +22,7 @@ import { ListingTestimonialComponent } from './Components/TestimonialApp/listing
 
 
 // _____________________________SERVICE LIBRARY_________________________________
-import { ServicelibModule } from 'servicelib';
+import { ServicelibModule } from 'dist/servicelib';
 import { AddeditServiceComponent } from './Components/ServiceApp/addedit-service/addedit-service.component';
 import { ListingServiceComponent } from './Components/ServiceApp/listing-service/listing-service.component';
 
@@ -34,7 +34,7 @@ import { ListingResourceComponent } from './Components/ResourceApp/listing-resou
 
 
 //_______________________________NEWS LETTER____________________________________
-import { NewsTitleModule } from 'news-title';
+
 import { AddEditSubcategoryComponent } from './Components/NewsletterApp/add-edit-subcategory/add-edit-subcategory.component';
 import { ListingSubcategoryComponent } from './Components/NewsletterApp/listing-subcategory/listing-subcategory.component';
 import { AddEditSubscriptionComponent } from './Components/NewsletterApp/add-edit-subscription/add-edit-subscription.component';
@@ -46,6 +46,9 @@ import { AddEditSenderappComponent } from './Components/NewsletterApp/add-edit-s
 import { ListingSenderappComponent } from './Components/NewsletterApp/listing-senderapp/listing-senderapp.component';
 import { AddEditTestemailappComponent } from './Components/NewsletterApp/add-edit-testemailapp/add-edit-testemailapp.component';
 import { LisitngTestemailappComponent } from './Components/NewsletterApp/lisitng-testemailapp/lisitng-testemailapp.component';
+import { FormsModule } from '@angular/forms';
+import { NewsTitleModule } from 'news-title';
+
 
 @NgModule({
   declarations: [
@@ -83,7 +86,8 @@ import { LisitngTestemailappComponent } from './Components/NewsletterApp/lisitng
     ServicelibModule,
     FileUploadModule,
     ResourcelibModule,
-    NewsTitleModule
+    NewsTitleModule,
+    FormsModule
    
     
   ],

@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../blog.service';
-
-// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface DialogData {
@@ -16,15 +14,17 @@ export interface DialogData {
   styleUrls: ['./add-blog.component.css']
 })
 export class AddBlogComponent implements OnInit {
-
+  editorconfig:any={};
   /**ckeditor start here*/
-  // public Editor = ClassicEditor;  //for ckeditor
-  editorConfig = {
-    placeholder: 'Type the content here!',
-  };
-  public model = {
-    editorData: ''
-  };
+
+  // editorConfig = {
+  //   placeholder: 'Type the content here!',
+  // };
+  // public model = {
+  //   editorData: ''
+  // };
+
+
   /**ckeditor end here*/
 
 
@@ -37,7 +37,7 @@ export class AddBlogComponent implements OnInit {
   successMessage: any = "Category Added Successfully!!!"
   getParentCatArr: any = [];
   dialogRef: any;
-  public editorconfig: any = {};
+
   // ==================================================
 
 
@@ -46,6 +46,7 @@ export class AddBlogComponent implements OnInit {
     private cookieService: CookieService, public dialog: MatDialog) {
     this.editorconfig.extraAllowedContent = '*[class](*),span;ul;li;table;td;style;*[id];*(*);*{*}';
   }
+
 
   ngOnInit() {
     //generating the form
@@ -92,7 +93,7 @@ export class AddBlogComponent implements OnInit {
       priority: ['', [Validators.required, Validators.maxLength(2)]],
       status: [true,],
       description: ['', [Validators.required, Validators.maxLength(100)]],
-      parent_id: [0,]
+      parent_id: [0]
     });
   }
   // ========================================================================
@@ -124,16 +125,19 @@ export class AddBlogComponent implements OnInit {
   //Getting the parent category
   getParentData() {
     let postData: any = {
-      source: this.configData.source,
+      // source: this.configData.source,
       token: this.cookieService.get('jwtToken')
 
     };
-    this.blogService.getData(this.configData.endpoint2 + 'datalist', postData).subscribe((response: any) => {
-      this.getParentCatArr = response.res;
+    this.blogService.getDataByEndpoint(this.configData.endpoint2).subscribe((response: any) => {
+      this.getParentCatArr = response.result;
+      console.log('parent category',this.getParentCatArr);
     })
   }
 
-
+  redirectToListingPage(){
+    this.router.navigateByUrl(this.configData.callBack);
+}
 
 
 

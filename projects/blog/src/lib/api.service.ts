@@ -299,8 +299,25 @@ export class ApiService {
     var result = this._http.post(this.serverUrl +endpoint, JSON.stringify(requestdata), httpOptions).pipe(map(res => res));
     return result;
   }
+  getDataWithoutToken(endpoint:any,requestdata: any ) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    var result = this._http.post(endpoint, JSON.stringify(requestdata), httpOptions).pipe(map(res => res));
+    return result;
+  }
 
-
-
-
+  getDataByEndpoint(endpoint: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': this.accesstoken
+      })
+    };
+    var result = this._http.post(endpoint, httpOptions).pipe(map(res => res));
+    return result;
+  }
+  
 }

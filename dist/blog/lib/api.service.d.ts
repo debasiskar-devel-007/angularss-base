@@ -72,4 +72,6 @@ export declare class ApiService {
     UpdateStatusForSingleData(requestdata: any): Observable<Object>;
     UpdateStatusForMultipleData(requestdata: any): Observable<Object>;
     CustomRequest(requestdata: any, endpoint: any): Observable<Object>;
+    getDataWithoutToken(endpoint: any, requestdata: any): Observable<Object>;
+    getDataByEndpoint(endpoint: any): Observable<Object>;
 }

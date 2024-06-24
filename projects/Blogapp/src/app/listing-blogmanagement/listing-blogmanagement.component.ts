@@ -12,28 +12,36 @@ export class ListingBlogmanagementComponent implements OnInit {
 
   //Blogs Lib List
   public blogListConfig: any = {
-    apiBaseUrl: environment.apiBaseUrl,
-    listEndPoint: "datalist",
+
+    apiBaseUrl: "http://localhost:3000/dev/api1/",
+    endpoint: "http://localhost:3000/dev/api1/getblogmanagementlistdata",
+    endpointc: "http://localhost:3000/dev/api1/getblogmanagementlistdata-count",
+
+    // apiBaseUrl: environment.apiBaseUrl,
+
+    listEndPoint: "getblogmanagementlistdata",
     datasource: "",
-    tableName: "blogs",
-    updateurl: "addorupdatedata",
+    tableName: "",
+    updateurl: "statusupdateforblog",
     editUrl: "blog-management/edit",
     jwtToken: "",
-    deleteEndPoint: "deletesingledata",
+    deleteEndPoint: "deleteforblog",
     addLink: "/blog-management/add",
-    view: "blogs_view"
-
+    view: "getblogmanagementlistdata",
+    datacollection:'getblogmanagementlistdata'
   }
 
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private cookieService: CookieService) {
-
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(resolveData => {
-      this.blogListConfig.datasource = resolveData.blogList.res;
-      this.blogListConfig.jwtToken = this.cookieService.get('jwtToken');
+    this.activatedRoute.data.subscribe((resolveData:any) => {
+      console.log(resolveData)
+       this.blogListConfig.datasource = resolveData.blogList.results.res;
+       console.log(this.blogListConfig.datasource)
+      // this.blogListConfig.jwtToken = this.cookieService.get('jwtToken');
+      this.blogListConfig.jwtToken ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODkxMjUwMTYsImRhdGEiOiJXbTFTYldNeVducGFSMXBzWkROS2FWa3pXbWxaTTFwcFdUTmFhUT09IiwiaWF0IjoxNTg5MTIxNDE2fQ.2QYX2-vjdD8ZRuNb2melYURMkrNhOJIfps6wOpfPXpI"
 
     });
   }

@@ -22,9 +22,8 @@
 
 
         <!-- --------------------------------description------------------- -->
-        <mat-label>Write Description...</mat-label>
-        <ck-editor formControlName="description"  [config]="editorconfig">
-        </ck-editor>
+        <mat-label>Description :</mat-label>
+        <ck-editor formControlName="description" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
         <!-- <ckeditor [data]="editorData" formControlName="description" (blur)="inputBlur('description')"> -->
         <!-- </ckeditor> -->
 
@@ -42,9 +41,8 @@
 
         <!-- --------------------------------additional details------------------- -->
 
-        <mat-label>Additional Details If Any...</mat-label>
-        <ck-editor formControlName="additional_details" [config]="editorconfig">
-        </ck-editor>
+        <mat-label>Additional Description (If Any) :</mat-label>
+        <ck-editor formControlName="additional_details" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
 
         <br>
         <!-- -------------------------------------------------------------- -->
@@ -98,12 +96,14 @@
         </div>
         <!-- __________________________________________________________________________________________________________ -->
 
-        <h1>Service Image:</h1>
 
-        <div class="warning_reso">
+        <!-- service image  -->
+        <h1>Image:</h1>
+
+        <!-- <div class="warning_reso">
           <mat-icon>warning</mat-icon>
           <p>Resolution: 650 x 300</p>
-        </div>
+        </div> -->
 
 
         <lib-file-upload [config]="imageConfigData"></lib-file-upload>
@@ -117,15 +117,37 @@
         </div>
 
 
+        <ng-container *ngIf="flag==true">
+          <!-- CARD VIEW  -->
+          <mat-card-content class="files-view" >
+              <mat-card class="example-card" *ngFor="let img of images_array_edit; let i2 = index">
 
-        <mat-card-content class="files-view" *ngIf="flag==true">
+                  <span class="viewUrlwrapper">
+                   <img mat-card-image [src]="img.img_var">
+                  </span>
+                  <span class="viewUrlcontent">
+                   <mat-card-title>{{ img.image_name }}</mat-card-title>
+                   <mat-card-subtitle>{{img.image_type}}</mat-card-subtitle>
+                  </span>
+
+                  <span class="closecard" (click)="clear_image(i2)"><i class="material-icons">clear</i></span>
+                  
+
+              </mat-card>
+          </mat-card-content>
+          <!-- ---------  -->
+      </ng-container>
+
+
+
+        <!-- <mat-card-content class="files-view" *ngIf="flag==true">
           <mat-card class="example-card">
             <img mat-card-image [attr.src]="img_var">
             <mat-card-title>{{ image_name }}</mat-card-title>
             <mat-card-subtitle>{{ image_type }}</mat-card-subtitle>
             <span class="closecard" (click)="clear_image()"><i class="material-icons">clear</i></span>
           </mat-card>
-        </mat-card-content>
+        </mat-card-content> -->
 
         <!-- ______________________________________________________________________________________________________________ -->
         <!-- Additional Image  -->

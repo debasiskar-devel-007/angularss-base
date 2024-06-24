@@ -11,25 +11,32 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ListingServiceComponent implements OnInit {
 
+  public dataList:any;
 
     /************** lib list setup start here *************/
     public serviceListConfig:any = {
-      apiBaseUrl: "https://i1kzfac3pe.execute-api.us-east-1.amazonaws.com/dev/api/",
+      apiBaseUrl: "https://9v41bpikik.execute-api.us-east-1.amazonaws.com/dev/api/",
       listEndPoint: "datalist",
-      datasource: "",
-      tableName: "services",
+      datasource: this.dataList,
+      tableName: "service_test",
       updateurl: "addorupdatedata",
       editUrl: "service/edit",
-      jwtToken: "",
+      jwtToken: this.cookieService.get('jwtToken'),
       deleteEndPoint: "deletesingledata",
       addLink: "/service/add",
-      view:"services_view"
+      view:"service_test"
     }
   
   constructor( private router: Router, private activatedRoute: ActivatedRoute, private cookieService: CookieService ) { 
 
   this.activatedRoute.data.subscribe(resolveData => {
+    console.log(resolveData)
+
     this.serviceListConfig.datasource = resolveData.serviceList.res;
+
+    this.dataList=this.serviceListConfig.datasource;
+    console.log(this.dataList)
+
     this.serviceListConfig.jwtToken = this.cookieService.get('jwtToken');
     
   });

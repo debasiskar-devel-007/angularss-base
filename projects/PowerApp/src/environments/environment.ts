@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   name: '(Dev)',
-  apiBaseUrl : 'https://i1kzfac3pe.execute-api.us-east-1.amazonaws.com/dev/api/'
+  apiBaseUrl : 'https://9ozbyvv5v0.execute-api.us-east-1.amazonaws.com/production/api/'
 };
 
 /*
